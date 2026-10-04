@@ -242,3 +242,7 @@ eval/             evaluation cases and results
 docs/             screenshots and demo script
 docker-compose.yml
 ```
+
+## License
+
+Released under the [MIT License](LICENSE).
