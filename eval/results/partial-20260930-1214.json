@@ -1,0 +1,76 @@
+{
+  "started": "2026-09-30 12:14",
+  "summary": {
+    "cases": 2,
+    "passed": 2,
+    "pass_rate": 1.0,
+    "by_category": {
+      "memory": "1/1",
+      "smalltalk": "1/1"
+    },
+    "latency_ms": {
+      "p50": 48,
+      "p95": 2401,
+      "max": 2401
+    },
+    "llm_calls_total": 6,
+    "cases_with_fallback": [],
+    "tokens_total": 3807,
+    "models": {
+      "gemini-3.5-flash-lite": 6
+    },
+    "judge": {
+      "judged": 0,
+      "groundedness_mean": null,
+      "relevance_mean": null,
+      "fully_grounded": 0
+    }
+  },
+  "results": [
+    {
+      "id": "memory_follow_up",
+      "category": "memory",
+      "user": "mila",
+      "turns": [
+        "What does the NovaPhone X 128GB cost?",
+        "and the 256GB one?"
+      ],
+      "passed": true,
+      "failures": [],
+      "answer": "The NovaPhone X 256GB is priced at 999 EUR and is currently in stock.",
+      "route": "operations",
+      "citations": [],
+      "latency_ms": 2401,
+      "total_ms": 7395,
+      "llm_calls": 6,
+      "input_tokens": 3605,
+      "output_tokens": 202,
+      "models": {
+        "gemini-3.5-flash-lite": 6
+      },
+      "judge": null,
+      "used_fallback": false
+    },
+    {
+      "id": "smalltalk_greeting",
+      "category": "smalltalk",
+      "user": "lucas",
+      "turns": [
+        "hi there!"
+      ],
+      "passed": true,
+      "failures": [],
+      "answer": "Hi! I'm NovaTech Copilot. I can help with orders and deliveries; products, prices and stock; returns, shipping and warranty; and NovaPlus membership. What would you like to know?",
+      "route": "smalltalk",
+      "citations": [],
+      "latency_ms": 48,
+      "total_ms": 48,
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "models": {},
+      "judge": null,
+      "used_fallback": false
+    }
+  ]
+}

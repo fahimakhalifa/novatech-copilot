@@ -1,0 +1,23 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+backend/data/novatech.db*
+backend/data/qdrant/
+backend/data/checkpoints.sqlite*
+node_modules/
+dist/
+# training run outputs (the trained adapter lives in backend/models/guard-lora/)
+guard-out/
+training/guard-lora/
+*.zip
+backend/data/logs/
+
+# local-only files
+CLAUDE.md
+docs/walkthrough.md
+.claude/
+backend/.pytest_cache/
+.pytest_cache/
+backend/models/*.v1/
+*.tsbuildinfo

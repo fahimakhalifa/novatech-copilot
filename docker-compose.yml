@@ -1,0 +1,60 @@
+# NovaTech Copilot: Qdrant server + FastAPI backend + React UI behind Nginx.
+name: novatech-copilot
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.19.0
+    volumes:
+      - qdrant-data:/qdrant/storage
+    restart: unless-stopped
+
+  api:
+    build: ./backend
+    env_file: ./backend/.env          # API keys and APP_SECRET, at runtime only
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      DATABASE_URL: sqlite:////app/data/state/novatech.db
+      CHECKPOINT_DB: /app/data/state/checkpoints.sqlite
+      CORS_ORIGINS: http://localhost:8080
+    volumes:
+      - app-state:/app/data/state     # database + conversation memory
+      - app-logs:/app/data/logs       # per-turn observability records
+      - model-cache:/cache            # Hugging Face + fastembed models
+      - ./eval:/eval:ro                # eval cases + results, shown on the Metrics page
+    depends_on:
+      - qdrant
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 180s              # first start: model downloads + indexing
+    restart: unless-stopped
+
+  web:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Optional Telegram bot: docker compose --profile telegram up --build
+  telegram:
+    build: ./backend
+    command: ["python", "-m", "scripts.telegram_bot"]
+    env_file: ./backend/.env
+    environment:
+      API_URL: http://api:8000
+    depends_on:
+      api:
+        condition: service_healthy
+    profiles: ["telegram"]
+    restart: unless-stopped
+
+volumes:
+  qdrant-data:
+  app-state:
+  app-logs:
+  model-cache:

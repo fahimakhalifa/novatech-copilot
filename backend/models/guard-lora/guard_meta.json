@@ -1,0 +1,11 @@
+{
+  "base_model": "microsoft/deberta-v3-small",
+  "labels": [
+    "blocked",
+    "smalltalk",
+    "task"
+  ],
+  "max_len": 128,
+  "test_macro_f1": 1.0,
+  "deepset_attack_recall": 0.9666666666666667
+}

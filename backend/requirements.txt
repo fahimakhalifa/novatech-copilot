@@ -1,0 +1,39 @@
+# --- API ---
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+pydantic-settings>=2.3
+python-dotenv>=1.0
+pyyaml>=6.0
+
+# --- Data ---
+sqlalchemy>=2.0
+
+# --- LLM + orchestration ---
+langchain>=0.3
+langchain-core>=0.3
+# langchain-community: not used (being sunset); reranker calls sentence-transformers directly
+langchain-text-splitters>=0.3
+langchain-google-genai>=2.0
+langchain-groq>=0.2
+langgraph>=0.2
+langgraph-checkpoint-sqlite>=2.0
+
+# --- Retrieval ---
+langchain-qdrant>=0.2
+qdrant-client>=1.10
+fastembed>=0.3            # sparse BM25 vectors for hybrid search
+langchain-huggingface>=0.1
+sentence-transformers>=3.0  # local dense embeddings + cross-encoder reranker
+
+# --- Guard classifier (LoRA adapter on DeBERTa-v3-small, trained in training/) ---
+peft>=0.21
+sentencepiece>=0.2
+transformers>=5,<6          # same major version the adapter is trained with
+
+# --- Messaging (optional extra) ---
+python-telegram-bot>=21.0
+
+# --- Dev ---
+pytest>=8
+httpx>=0.27              # FastAPI TestClient (tests/test_api.py)

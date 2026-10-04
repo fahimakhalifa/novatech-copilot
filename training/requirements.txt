@@ -1,0 +1,5 @@
+# Extra packages to run training/guard_classifier.py locally (Colab has them preinstalled).
+# Install on top of backend/requirements.txt.
+datasets>=3.0
+accelerate>=1.0
+scikit-learn>=1.5

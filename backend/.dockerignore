@@ -1,0 +1,14 @@
+# Secrets: injected at runtime via env_file, never baked into an image.
+.env
+# Local state: lives in Docker volumes instead.
+data/novatech.db
+data/checkpoints.sqlite
+data/qdrant/
+data/logs/
+# Not needed at runtime.
+tests/
+**/__pycache__/
+**/*.pyc
+.pytest_cache/
+# Backups of earlier classifier versions.
+models/*.v1/
